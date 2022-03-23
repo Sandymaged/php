@@ -6,10 +6,10 @@ $db = new PDO($dsn, $user, $password);
 
 
 if ($db) {
-        $product_id = $_GET["id"];
-        $ins_query = "delete from products where  product_id=?";
+        $user_id = $_GET["id"];
+        $ins_query = "delete from users where  user_id=?";
         $stmt = $db->prepare($ins_query);
-        $res = $stmt->execute([$product_id]);
+        $res = $stmt->execute([$user_id]);
         //echo $res;    
-        header("location:allproducts.php");
+        header("location:allusers.php");
 }

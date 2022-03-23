@@ -40,6 +40,5 @@ $stmt->bindParam(":amount",$amount);
 $res=$stmt->execute();
   move_uploaded_file($file_tmp,$file_name);
 
-  header("location:allprod.php");
+  header("location:allproducts.php");
  }
- ?>

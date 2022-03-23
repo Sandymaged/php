@@ -34,7 +34,7 @@
                         <a class="nav-link" href="alluser.php">Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manual Orders</a>
+                        <a class="nav-link" href="index.php">Manual Orders</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Checks</a>
@@ -78,7 +78,8 @@
                         <td>{$row["user_name"]}</td> 
                          <td>{$row["user_room"]}</td>
                          <td>{$row["user_ext"]}</td>
-                         <td><a href='#'>Edit</a> <a href='#'>Delete</a></td>
+                         <td><a href='edituser.php?id={$row["user_id"]}'>edit </a>,
+                         <a href='deleteuser.php?id={$row["user_id"]}'>delete </a></td>      
                          </tr>";
             }
             echo "</table>";

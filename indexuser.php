@@ -112,7 +112,7 @@
             <textarea name="note" class="form-control"></textarea><br>
             <h5>Room:</h5>
             <input name="room" type="number" class="form-control"><br>
-            <hr>
+
             <p style="font-size:30px;"><textarea id="tp" name="total" style="width: 60px; height:50px">0 </textarea><span>EGP</span></p>
             <input type="submit" value="CheckOut" class="btn btn-success" style="float:right;">
 

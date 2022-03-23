@@ -19,7 +19,7 @@ try {
 
     $db = new PDO($dsn, $user, $password);
     if ($db) {
-        $select_query = "select * from products where product_id=:sid";
+        $select_query = "select * from users where user_id=:sid";
         $stmt = $db->prepare($select_query);
         $stmt->bindParam("sid", $id);
         $stmt->execute();
@@ -66,18 +66,16 @@ try {
         <!-- ./container -->
     </nav>
 </header>
-<h1 style="color: rebeccapurple; size: 50px; margin-left: 300px; "> Edit product Data</h1>
+<h1 style="color: rebeccapurple; size: 50px; margin-left: 300px; "> Edit user Data</h1>
 <div class="container w-50 mt-5 border rounded-3">
     <div class="row mt-4">
-        <form method="Post" action='<?php echo "update.php?id={$id}"; ?>' enctype="multipart/form-data">
-            <label>name of product</label>
-            <input name="name" class="form-control" value="<?php echo $row["product_name"]; ?>"><br>
-            <label class="form-label"> product price</label>
-            <input name="price" class="form-control" value="<?php echo $row["product_price"]; ?>"><br>
-            <label class="form-label"> mount of product</label>
-            <input name="amount" class="form-control" value="<?php echo $row["amount"]; ?>"><br>
-            <label class="form-label">status of product</label>
-            <input type="text" name="photo" value="<?php echo $row["product_satuts"]; ?>" class="form-control">
+        <form method="Post" action='<?php echo "updateuser.php?id={$id}"; ?>' enctype="multipart/form-data">
+            <label>user name</label>
+            <input name="name" class="form-control" value="<?php echo $row["user_name"]; ?>"><br>
+            <label class="form-label">room</label>
+            <input name="room" class="form-control" value="<?php echo $row["user_room"]; ?>"><br>
+            <label class="form-label">ext</label>
+            <input name="ext" class="form-control" value="<?php echo $row["user_ext"]; ?>"><br>
             <input class="btn btn-outline-primary btn1" type="submit">
 
 

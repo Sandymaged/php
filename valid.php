@@ -47,6 +47,6 @@ if (count($errors) > 0) {
         $room = $_REQUEST["room"];
         $ext = $_REQUEST["ext"];
         $res = $stmt->execute([$name, $email, $passwrd, $room, $ext]);
-        header("location:index.php");
+        header("location:allusers.php");
     }
 }
