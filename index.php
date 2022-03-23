@@ -58,7 +58,7 @@
                         <a class="nav-link" href="#">Checks</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="########">Checks</a>
+                        <a class="nav-link" href="#">Checks</a>
                     </li>
                 </ul>
                 <div style="display:inline; margin-left:700px">
