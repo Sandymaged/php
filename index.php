@@ -75,7 +75,18 @@
     $user = 'root';
     $password = '';
     $db = new PDO($dsn, $user, $password);
-    echo "<a href='users.php'>add user</a>";
+
+    echo "<h2>Select User:</h2>";
+    $q = "select * from users";
+    $s = $db->prepare($q);
+    $resobj = $s->execute();
+    echo "<div class='row'><select class='form-select form-select-lg mb-1'>
+    <option>Choose Username...</option>
+    ";
+    while ($row = $s->fetch(PDO::FETCH_ASSOC)) {
+        echo "  <option>{$row["user_name"]}</option>";
+    }
+    echo "</select></div>";
 
     $select_query = "select * from products";
     $stmt = $db->prepare($select_query);

@@ -31,7 +31,7 @@
                         <a class="nav-link" href="allproducts.php">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="alluser.php">Users</a>
+                        <a class="nav-link" href="allusers.php">Users</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">Manual Orders</a>
@@ -52,7 +52,7 @@
     </header>
     <div class="container">
         <h2 style="margin-top: 20px;">All Products</h2>
-        <a href="#" style="float: right;">Add product</a>
+        <a href="addproduct.php" style="float: right;">Add product</a>
         <?php
 
         $dsn = 'mysql:dbname=cafeteria;host=127.0.0.1;port=3306;'; #port number
@@ -72,14 +72,24 @@
              <th scope='col'>price</th>
              <th scope='col'>category</th>
              <th scope='col'>Action</th>
+             <th scope='col'>available or not</th>
              </tr> ";
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($row["amount"] > 0) {
+                    $rowaction = "available";
+                } else {
+                    $rowaction = "unavilable";
+                }
                 echo "<tr>
                         <td>{$row["product_name"]}</td> 
-                         <td>{$row["product_price"]}</td>
-                         <td>{$row["product_satuts"]}</td>
-                         <td><a href='#'>Edit</a> <a href='#'>Delete</a></td>
-                         </tr>";
+                        <td>{$row["product_price"]}</td>
+                        <td>
+                        {$row["product_satuts"]}'
+                        </td>
+                        <td><a href='edit.php?id={$row["product_id"]}'>edit </a>,
+                        <a href='delete.php?id={$row["product_id"]}'>delete </a>
+                        <td > {$rowaction}</td>
+                        </td></tr>";
             }
             echo "</table>";
         }

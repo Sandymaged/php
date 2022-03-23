@@ -7,7 +7,7 @@ $x = (int) $_POST['total'];
 $z = (int) $_POST['room'];
 $y = $_POST['note'];
 $d = date("Y/m/d");
-$s = "insert into orders(amount,note,room,user_id,date)values({$x},'{$y}','{$z}',1,'{$d}')";
+$s = "insert into orders(total,note,room,user_id,date)values({$x},'{$y}','{$z}',1,'{$d}')";
 $stmt = $db->prepare($s);
 $stmt->execute();
 header("location:indexuser.php");
