@@ -46,25 +46,17 @@
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="allproducts.php">Products</a>
+                        <a class="nav-link" href="indexuser.php">
+                            Home
+                        </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="allusers.php">Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Manual Orders</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Checks</a>
+                        <a class="nav-link" href="#">Orders</a>
                     </li>
 
                 </ul>
-                <div style="display:inline; margin-left:700px">
-                    <div class="my-2 my-sm-0">
-                        <img src="an6.jpeg" width="50" height="50" alt="userAvatar" />
-                        <span>Admin</span>
-                    </div>
-                </div>
+
             </div>
             <!-- ./container -->
         </nav>
@@ -75,7 +67,6 @@
     $user = 'root';
     $password = '';
     $db = new PDO($dsn, $user, $password);
-    echo "<a href='users.php'>add user</a>";
 
     $select_query = "select * from products";
     $stmt = $db->prepare($select_query);
@@ -96,7 +87,7 @@
     }
     echo "</div></div>";
     ?>
-    <form method="post" action="addorder.php" class="col-3" style="border:1px solid grey; height:500px">
+    <form method="post" action="addorderuser.php" class="col-3" style="border:1px solid grey; height:500px">
         <div style="margin-top:20px ;">
             <div id="tea">
                 tea: <span id="t"></span>L.E
@@ -118,11 +109,9 @@
             </div>
             <br>
             <h5>Notes:</h5>
-            <textarea name="note"></textarea><br>
+            <textarea name="note" class="form-control"></textarea><br>
             <h5>Room:</h5>
             <input name="room" type="number" class="form-control"><br>
-            <hr>
-            <br>
             <hr>
             <p style="font-size:30px;"><textarea id="tp" name="total" style="width: 60px; height:50px">0 </textarea><span>EGP</span></p>
             <input type="submit" value="CheckOut" class="btn btn-success" style="float:right;">

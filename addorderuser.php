@@ -10,4 +10,4 @@ $d = date("Y/m/d");
 $s = "insert into orders(amount,note,room,user_id,date)values({$x},'{$y}','{$z}',1,'{$d}')";
 $stmt = $db->prepare($s);
 $stmt->execute();
-header("location:index.php");
+header("location:indexuser.php");
