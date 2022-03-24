@@ -80,7 +80,7 @@
     $q = "select * from users";
     $s = $db->prepare($q);
     $resobj = $s->execute();
-    echo "<div class='row'><select class='form-select form-select-lg mb-1'>
+    echo "<div class='row'><select class='form-select form-select-lg mb-1' name='nn'>
     <option>Choose Username...</option>
     ";
     while ($row = $s->fetch(PDO::FETCH_ASSOC)) {
@@ -112,20 +112,23 @@
             <div id="tea">
                 tea: <span id="t"></span>L.E
                 <a href="#" id="plus"><i class="fa fa-plus"></i></a>
-                <a href="#" id="mins"><i class="fa fa-minus"></i>
-                </a>
+                <a href="#" id="mins"><i class="fa fa-minus"></i></a>
+                <textarea name="tea" id="totaltea">0</textarea>
             </div>
             <div id="coffe">coffe: <span id="c"></span>L.E
                 <a href="#" id="pluss"><i class="fa fa-plus"></i></a>
                 <a href="#" id="minss"><i class="fa fa-minus"></i></a>
+                <textarea name="coffe" id="totalcoffe">0</textarea>
             </div>
             <div id="sd">soft drink: <span id="s"></span>L.E
                 <a href="#" id="pluss1"><i class="fa fa-plus"></i></a>
                 <a href="#" id="minss1"><i class="fa fa-minus"></i></a>
+                <textarea name="softdr" id="totalsoftdr">0</textarea>
             </div>
             <div id="fc">french coffe: <span id="f"></span>L.E
                 <a href="#" id="pluss2"><i class="fa fa-plus"></i></a>
                 <a href="#" id="minss2"><i class="fa fa-minus"></i></a>
+                <textarea name="frenchco" id="totalfrenchco">0</textarea>
             </div>
             <br>
             <h5>Notes:</h5>
@@ -142,6 +145,10 @@
         console.log("done");
         let a;
         let totalprice = 0;
+        let totaltea = 0;
+        let totalcoffe = 0;
+        let totalsoft = 0;
+        let totalfrench = 0;
 
         function d(x, y) {
             if (x == "tea") {
@@ -149,15 +156,20 @@
                 a = parseInt(y);
                 document.getElementById("t").textContent = a;
                 document.getElementById("plus").addEventListener("click", function() {
-                    totalprice = totalprice + 100;
+                    totalprice = totalprice + 7;
+                    totaltea = totaltea + 1;
                     console.log(totalprice);
                     document.getElementById("tp").textContent = totalprice;
+                    document.getElementById("totaltea").textContent = totaltea;
                 });
                 document.getElementById("mins").addEventListener("click", function() {
                     if (totalprice > 0) {
-                        totalprice = totalprice - 100;
+                        totalprice = totalprice - 7;
+                        totaltea = totaltea - 1;
                         console.log(totalprice);
                         document.getElementById("tp").textContent = totalprice;
+                        document.getElementById("totaltea").textContent = totaltea;
+
                     }
                 });
             }
@@ -166,15 +178,18 @@
                 a = parseInt(y);
                 document.getElementById("c").textContent = a;
                 document.getElementById("pluss").addEventListener("click", function() {
-                    totalprice = totalprice + 22;
+                    totalprice = totalprice + 20;
+                    totalcoffe = totalcoffe + 1;
                     console.log(totalprice);
                     document.getElementById("tp").textContent = totalprice;
                 });
                 document.getElementById("minss").addEventListener("click", function() {
                     if (totalprice > 0) {
-                        totalprice = totalprice - 22;
+                        totalprice = totalprice - 20;
+                        totalcoffe = totalcoffe - 1;
                         console.log(totalprice);
                         document.getElementById("tp").textContent = totalprice;
+                        document.getElementById("totalcoffe").textContent = totalcoffe;
                     }
                 });
             }
@@ -184,14 +199,18 @@
                 document.getElementById("s").textContent = a;
                 document.getElementById("pluss1").addEventListener("click", function() {
                     totalprice = totalprice + 7;
+                    totalsoft = totalsoft + 1;
                     console.log(totalprice);
                     document.getElementById("tp").textContent = totalprice;
+                    document.getElementById("totalsoftdr").textContent = totalsoft;
                 });
                 document.getElementById("minss1").addEventListener("click", function() {
                     if (totalprice > 0) {
                         totalprice = totalprice - 7;
+                        totalsoft = totalsoft - 1;
                         console.log(totalprice);
                         document.getElementById("tp").textContent = totalprice;
+                        document.getElementById("totalsoftdr").textContent = totalsoft;
                     }
                 });
             }
@@ -201,14 +220,18 @@
                 document.getElementById("f").textContent = a;
                 document.getElementById("pluss2").addEventListener("click", function() {
                     totalprice = totalprice + 30;
+                    totalfrench = totalfrench + 1;
                     console.log(totalprice);
                     document.getElementById("tp").textContent = totalprice;
+                    document.getElementById("totalfrenchco").textContent = totalfrench;
                 });
                 document.getElementById("minss2").addEventListener("click", function() {
                     if (totalprice > 0) {
                         totalprice = totalprice - 30;
+                        totalfrench = totalfrench - 1;
                         console.log(totalprice);
                         document.getElementById("tp").textContent = totalprice;
+                        document.getElementById("totalfrenchco").textContent = totalfrench;
                     }
                 });
             }
