@@ -87,7 +87,7 @@
     }
     echo "</div></div>";
     ?>
-    <form method="post" action="addorder.php" class="col-3" style="border:1px solid grey; height:500px">
+    <form method="post" action="addorderuser.php" class="col-3" style="border:1px solid grey; height:500px">
         <div style="margin-top:20px ;">
             <div id="tea">
                 tea: <span id="t"></span>L.E
