@@ -66,6 +66,9 @@ try {
         <!-- ./container -->
     </nav>
 </header>
+
+
+
 <h1 style="color: rebeccapurple; size: 50px; margin-left: 300px; "> Edit product Data</h1>
 <div class="container w-50 mt-5 border rounded-3">
     <div class="row mt-4">

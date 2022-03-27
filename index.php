@@ -4,6 +4,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
         #tea {
             display: none;
@@ -37,7 +38,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <!-- container -->
-            <a class="navbar-brand" href="#">ITI Cafeteria</a>
+            <a class="navbar-brand" href="#" style="margin-left: 30px;">ITI Cafeteria</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -60,9 +61,14 @@
 
                 </ul>
                 <div style="display:inline; margin-left:700px">
-                    <div class="my-2 my-sm-0">
-                        <img src="an6.jpeg" width="50" height="50" alt="userAvatar" />
-                        <span>Admin</span>
+
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Admin </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -75,23 +81,23 @@
     $user = 'root';
     $password = '';
     $db = new PDO($dsn, $user, $password);
-
+    echo "<form method='post' action='addorder.php' class='row'>";
     echo "<h2>Select User:</h2>";
     $q = "select * from users";
     $s = $db->prepare($q);
     $resobj = $s->execute();
-    echo "<div class='row'><select class='form-select form-select-lg mb-1' name='nn'>
-    <option>Choose Username...</option>
+    echo "<div class='row'><select name='s' class='form-select' aria-label='Default select example'  style='width:auto;'>
+    <option selected>Choose user name..</option>
     ";
     while ($row = $s->fetch(PDO::FETCH_ASSOC)) {
-        echo "  <option>{$row["user_name"]}</option>";
+        echo " <option value='{$row['user_id']}'>{$row["user_name"]}</option>
+        ";
     }
     echo "</select></div>";
 
     $select_query = "select * from products";
     $stmt = $db->prepare($select_query);
     $resobj = $stmt->execute();
-
     echo "<div class='col-9'><div class='row row-cols-3 row-cols-md-3 g-4'>";
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $x = $row["product_name"];
@@ -101,13 +107,13 @@
             <div class='card-body'>
                 <h4 class='card-title'>{$row["product_name"]}</h4>
                 <h6 class='card-text'>Price: {$row["product_price"]}L.E</h6>
-                <button class='btn btn-success' onclick='d(`$x`,`$y`)'>ADD</button>
+                <a href='#' class='btn btn-success' onclick='d(`$x`,`$y`)'>ADD</a>
             </div>
         </div></div>";
     }
     echo "</div></div>";
     ?>
-    <form method="post" action="addorder.php" class="col-3" style="border:1px solid grey; height:500px">
+    <div class="col-3" style="border:1px solid grey; height:500px">
         <div style="margin-top:20px ;">
             <div id="tea">
                 tea: <span id="t"></span>L.E
@@ -140,6 +146,7 @@
             <input type="submit" value="CheckOut" class="btn btn-success" style="float:right;">
 
         </div>
+    </div>
     </form>
     <script>
         console.log("done");

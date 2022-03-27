@@ -21,16 +21,15 @@
     $password = '';
     try {
         $conn = new PDO($dsn, $user, $password);
-        var_dump($conn);
         $sql_user = 'SELECT o.order_id  , o.date as date, u.user_name as name
-        , o.room, o.status, o.total as total
+        , o.room, o.staus, o.total as total
             FROM orders o join users u  on o.user_id= u.user_id
-             WHERE o.status != "Delivered";
+             WHERE o.staus != "Delivered";
              ';
         $stmt_user = $conn->prepare($sql_user);
         $stmt_user->execute();
         $result_user = $stmt_user->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($result_user);
+        // var_dump($result_user);
         foreach ($result_user as $row_user) {
             echo '<div class="order">';
             echo '<div class="header">';
@@ -45,7 +44,7 @@
             echo '<td>' . $row_user['date'] . '</td>';
             echo '<td>' . $row_user['name'] . '</td>';
             echo '<td>' . $row_user['room'] . '</td>';
-            echo '<td>' . $row_user['status'] . '<button data-status="' . $row_user['status'] . '" data-id="' . $row_user['order_id'] . '" class="btn btn-warning ms-3" 
+            echo '<td>' . $row_user['staus'] . '<button data-status="' . $row_user['staus'] . '" data-id="' . $row_user['order_id'] . '" class="btn btn-warning ms-3" 
             onclick="updateStatus(event)">Deliver</button>' . '</td>';
             echo '</tr>';
             echo '</table>';
@@ -81,18 +80,18 @@
     ?>
     <script>
         async function updateStatus(e) {
-            let status = e.target.dataset.status == "processing" ? "On Delivery" : "Delivered";
+            let staus = e.target.dataset.staus == "processing" ? "On Delivery" : "Delivered";
             let id = e.target.dataset.id;
             console.log(status, id);
-            fetch(`./controllers/changeOrderStatus.php?orderId=${id}&status=${status}`)
+            fetch(`./controllers/changeOrderStatus.php?orderId=${id}&staus=${staus}`)
                 .then(() => {
-                        if (status == "On Delivery")
+                        if (staus == "On Delivery")
                             e.target.parentElement.innerHTML = `
-                        <td>${status}<button data-status="${status}" data-id="${id}"
+                        <td>${staus}<button data-status="${staus}" data-id="${id}"
                          class="btn btn-success ms-3" onclick="updateStatus(event)">Done</button></td>`
 
                         else
-                            e.target.parentElement.innerHTML = `<td>${status}</td>`
+                            e.target.parentElement.innerHTML = `<td>${staus}</td>`
 
                     }
 
