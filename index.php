@@ -176,7 +176,6 @@
                         console.log(totalprice);
                         document.getElementById("tp").textContent = totalprice;
                         document.getElementById("totaltea").textContent = totaltea;
-
                     }
                 });
             }
@@ -189,6 +188,7 @@
                     totalcoffe = totalcoffe + 1;
                     console.log(totalprice);
                     document.getElementById("tp").textContent = totalprice;
+                    document.getElementById("totalcoffe").textContent = totalcoffe;
                 });
                 document.getElementById("minss").addEventListener("click", function() {
                     if (totalprice > 0) {

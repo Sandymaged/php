@@ -44,31 +44,42 @@
             echo '<td>' . $row_user['date'] . '</td>';
             echo '<td>' . $row_user['name'] . '</td>';
             echo '<td>' . $row_user['room'] . '</td>';
-            echo '<td>' . $row_user['staus'] . '<button data-status="' . $row_user['staus'] . '" data-id="' . $row_user['order_id'] . '" class="btn btn-warning ms-3" 
-            onclick="updateStatus(event)">Deliver</button>' . '</td>';
+            echo '<td>' . $row_user['staus'] . '<a data-status="' . $row_user['staus'] . '" data-id="' . $row_user['order_id'] . '" class="btn btn-warning ms-3" 
+            onclick="updateStatus(event)">' . $row_user["staus"] . '</a>' . '</td>';
             echo '</tr>';
             echo '</table>';
             echo '</div>';
             echo '<div class="body">';
 
             $id = $row_user['order_id'];
-            $sql_product = "SELECT  
-             o.total
-                from orders o 
-                where o.order_id = $id
+            $sql_product = "SELECT * from orders
+                where order_id = $id
                 ";
             $stmt_product = $conn->prepare($sql_product);
             $stmt_product->execute();
             $result_product = $stmt_product->fetchAll(PDO::FETCH_ASSOC);
             //$total = 0;
             foreach ($result_product as $row_product) {
-
-
+                if ($row_product['tea'] > 0) {
+                    // echo "<img src='https://fakeimg.pl/100x50/adb5bd/' class='card-img-top'>";
+                    echo "tea: " . $row_product['tea'] . "  Total: " . $row_product['tea'] * 7 . "<br>";
+                }
+                if ($row_product['coffe'] > 0) {
+                    //echo "<img src='https://fakeimg.pl/100x50/adb5bd/' class='card-img-top'>";
+                    echo "coffe: " . $row_product['coffe'] . "  Total: " . $row_product['coffe'] * 20 . "<br>";
+                }
+                if ($row_product['soft'] > 0) {
+                    // echo "<img src='https://fakeimg.pl/100x50/adb5bd/' class='card-img-top'>";
+                    echo "soft drink: " . $row_product['soft'] . "  Total: " . $row_product['soft'] * 7 . "<br>";
+                }
+                if ($row_product['french'] > 0) {
+                    // echo "<img src='https://fakeimg.pl/100x50/adb5bd/' class='card-img-top'>";
+                    echo "french: " . $row_product['french'] . "  Total: " . $row_product['french'] * 30 . "<br>";
+                }
                 echo '</div>
                 <div class="footer">
-                    <span class="text-light">Total: EGP ';
-                // echo $row_user["total"];
-                echo $row_user['total'];
+                    <span style="bold">Total Price: EGP ';
+                echo $row_product['total'];
                 echo '</span>
                 </div>';
                 echo '</div>';
@@ -82,22 +93,16 @@
         async function updateStatus(e) {
             let staus = e.target.dataset.staus == "processing" ? "On Delivery" : "Delivered";
             let id = e.target.dataset.id;
-            console.log(status, id);
+            console.log(staus, id);
             fetch(`./controllers/changeOrderStatus.php?orderId=${id}&staus=${staus}`)
                 .then(() => {
-                        if (staus == "On Delivery")
-                            e.target.parentElement.innerHTML = `
+                    if (staus == "On Delivery")
+                        e.target.parentElement.innerHTML = `
                         <td>${staus}<button data-status="${staus}" data-id="${id}"
                          class="btn btn-success ms-3" onclick="updateStatus(event)">Done</button></td>`
-
-                        else
-                            e.target.parentElement.innerHTML = `<td>${staus}</td>`
-
-                    }
-
-
-
-                )
+                    else
+                        e.target.parentElement.innerHTML = `<td>${staus}</td>`
+                })
 
         }
     </script>
