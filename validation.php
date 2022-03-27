@@ -48,7 +48,7 @@ if (count($errors) > 0) {
     // echo $file_name;
     try {
         if ($conn) {
-            $ins_query = "insert into products(product_name,product_satuts, product_price,amount,category_id) values (:name, '{ $file_name}', :price,:amount,:catid);";
+            $ins_query = "insert into products(product_name, product_price,amount,category_id) values (:name, :price,:amount,:catid);";
             // $ins_query="insert into product(name, price,photo,categoryid) values ('uihui',778, 'hjjk',1);";
 
             $stmt = $conn->prepare($ins_query);

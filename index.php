@@ -58,6 +58,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Checks</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.php">Orders</a>
+                    </li>
 
                 </ul>
                 <div style="display:inline; margin-left:700px">

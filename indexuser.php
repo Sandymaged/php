@@ -67,11 +67,11 @@
     $user = 'root';
     $password = '';
     $db = new PDO($dsn, $user, $password);
+    echo "<form method='post' action='addorderuser.php' class='row'>";
 
     $select_query = "select * from products";
     $stmt = $db->prepare($select_query);
     $resobj = $stmt->execute();
-
     echo "<div class='col-9'><div class='row row-cols-3 row-cols-md-3 g-4'>";
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $x = $row["product_name"];
@@ -81,13 +81,13 @@
             <div class='card-body'>
                 <h4 class='card-title'>{$row["product_name"]}</h4>
                 <h6 class='card-text'>Price: {$row["product_price"]}L.E</h6>
-                <button class='btn btn-success' onclick='d(`$x`,`$y`)'>ADD</button>
+                <a href='#' class='btn btn-success' onclick='d(`$x`,`$y`)'>ADD</a>
             </div>
         </div></div>";
     }
     echo "</div></div>";
     ?>
-    <form method="post" action="addorderuser.php" class="col-3" style="border:1px solid grey; height:500px">
+    <div class="col-3" style="border:1px solid grey; height:500px">
         <div style="margin-top:20px ;">
             <div id="tea">
                 tea: <span id="t"></span>L.E
@@ -120,6 +120,7 @@
             <input type="submit" value="CheckOut" class="btn btn-success" style="float:right;">
 
         </div>
+    </div>
     </form>
     <script>
         console.log("done");
@@ -149,7 +150,6 @@
                         console.log(totalprice);
                         document.getElementById("tp").textContent = totalprice;
                         document.getElementById("totaltea").textContent = totaltea;
-
                     }
                 });
             }
@@ -162,6 +162,7 @@
                     totalcoffe = totalcoffe + 1;
                     console.log(totalprice);
                     document.getElementById("tp").textContent = totalprice;
+                    document.getElementById("totalcoffe").textContent = totalcoffe;
                 });
                 document.getElementById("minss").addEventListener("click", function() {
                     if (totalprice > 0) {

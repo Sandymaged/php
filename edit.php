@@ -34,7 +34,7 @@ try {
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- container -->
-        <a class="navbar-brand" href="#">ITI Cafeteria</a>
+        <a class="navbar-brand" href="#" style="margin-left: 30px;">ITI Cafeteria</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -54,20 +54,26 @@ try {
                 <li class="nav-item">
                     <a class="nav-link" href="#">Checks</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="orders.php">Orders</a>
+                </li>
 
             </ul>
             <div style="display:inline; margin-left:700px">
-                <div class="my-2 my-sm-0">
-                    <img src="an6.jpeg" width="50" height="50" alt="userAvatar" />
-                    <span>Admin</span>
+
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Admin </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+
+                    </ul>
                 </div>
             </div>
         </div>
         <!-- ./container -->
     </nav>
 </header>
-
-
 
 <h1 style="color: rebeccapurple; size: 50px; margin-left: 300px; "> Edit product Data</h1>
 <div class="container w-50 mt-5 border rounded-3">
@@ -79,8 +85,6 @@ try {
             <input name="price" class="form-control" value="<?php echo $row["product_price"]; ?>"><br>
             <label class="form-label"> mount of product</label>
             <input name="amount" class="form-control" value="<?php echo $row["amount"]; ?>"><br>
-            <label class="form-label">status of product</label>
-            <input type="text" name="photo" value="<?php echo $row["product_satuts"]; ?>" class="form-control">
             <input class="btn btn-outline-primary btn1" type="submit">
 
 

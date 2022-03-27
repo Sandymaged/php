@@ -19,7 +19,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <!-- container -->
-            <a class="navbar-brand" href="#">ITI Cafeteria</a>
+            <a class="navbar-brand" href="#" style="margin-left: 30px;">ITI Cafeteria</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -39,11 +39,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Checks</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.php">Orders</a>
+                    </li>
+
                 </ul>
                 <div style="display:inline; margin-left:700px">
-                    <div class="my-2 my-sm-0">
-                        <img src="an6.jpeg" width="50" height="50" alt="userAvatar" />
-                        <span>Admin</span>
+
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Admin </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -70,7 +79,6 @@
             <tr>
             <th scope='col'>product</th>
              <th scope='col'>price</th>
-             <th scope='col'>category</th>
              <th scope='col'>Action</th>
              <th scope='col'>available or not</th>
              </tr> ";
@@ -83,9 +91,7 @@
                 echo "<tr>
                         <td>{$row["product_name"]}</td> 
                         <td>{$row["product_price"]}</td>
-                        <td>
-                        {$row["product_satuts"]}'
-                        </td>
+                       
                         <td><a href='edit.php?id={$row["product_id"]}'>edit </a>,
                         <a href='delete.php?id={$row["product_id"]}'>delete </a>
                         <td > {$rowaction}</td>
